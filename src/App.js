@@ -1,11 +1,11 @@
+import Portfolio from "./Portfolio";
 
 
-
-import Portfolio from './components/Portfolio'
 function App() {
   return (
     <div className="App">
-      < Portfolio />
+      {/* <ParticlesBackground /> */}
+      <Portfolio />
     </div>
   );
 }
