@@ -4,28 +4,59 @@ import About from "./components/About";
 import Footer from "./components/Footer";
 import Skills from "./components/Skills";
 import { useState, useEffect } from "react";
-import { BsFillMoonStarsFill } from 'react-icons/bs';
 import Hero from './components/Hero';
-import Abouttest from './components/Abouttest';
 import Particles from "react-tsparticles";
 import { loadFull, tsparticles } from "tsparticles";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
+
 
 
 function Portfolio() {
+    const track = document.getElementById("image-track");
 
-    const observer = new IntersectionObserver((e) => {
-        e.forEach((e) => {
-            if (e.isIntersecting) {
-                e.target.classList.add('show');
-            }
-            else {
-                e.target.classList.remove('show');
-            }
-        })
-    })
-    const hidden = document.querySelectorAll('.hid')
-    hidden.forEach((el) => observer.observe(el));
+    const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
+
+    const handleOnUp = () => {
+        track.dataset.mouseDownAt = "0";
+        track.dataset.prevPercentage = track.dataset.percentage;
+    }
+
+    const handleOnMove = e => {
+        if (track.dataset.mouseDownAt === "0") return;
+
+        const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+            maxDelta = window.innerWidth / 2;
+
+        const percentage = (mouseDelta / maxDelta) * -100,
+            nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
+            nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
+
+        track.dataset.percentage = nextPercentage;
+
+        track.animate({
+            transform: `translate(${nextPercentage}%, -50%)`
+        }, { duration: 1200, fill: "forwards" });
+
+        for (const image of track.getElementsByClassName("image")) {
+            image.animate({
+                objectPosition: `${100 + nextPercentage}% center`
+            }, { duration: 1200, fill: "forwards" });
+        }
+    }
+
+    /* -- Had to add extra lines for touch events -- */
+
+    window.onmousedown = e => handleOnDown(e);
+
+    window.ontouchstart = e => handleOnDown(e.touches[0]);
+
+    window.onmouseup = e => handleOnUp(e);
+
+    window.ontouchend = e => handleOnUp(e.touches[0]);
+
+    window.onmousemove = e => handleOnMove(e);
+
+    window.ontouchmove = e => handleOnMove(e.touches[0]);
 
 
     const [darkMode, setDarkMode] = useState(false);
@@ -66,7 +97,9 @@ function Portfolio() {
 
     return (
 
+
         <main className={darkMode ? "dark" : ""}>
+
             <Particles
                 id="tsparticles"
                 init={particlesInit}
@@ -74,7 +107,7 @@ function Portfolio() {
                 options={{
                     background: {
                         color: {
-                            value: "#000000",
+                            value: darkMode ? '#FDFDFD' : "#232323"
                         },
                     },
                     fpsLimit: 120,
@@ -105,10 +138,10 @@ function Portfolio() {
                             value: "#00C667",
                         },
                         links: {
-                            color: "#ffffff",
+                            color: "#eb5757",
                             distance: 200,
                             enable: true,
-                            opacity: 0.5,
+                            opacity: 1,
                             width: 1,
                         },
                         collisions: {
@@ -118,7 +151,7 @@ function Portfolio() {
                             directions: "none",
                             enable: true,
                             outModes: {
-                                default: "bounce",
+                                default: "destroy",
                             },
                             random: true,
                             speed: 0.9,
@@ -144,40 +177,28 @@ function Portfolio() {
                     detectRetina: true,
                 }}
             />
+
+
             <div className=' relative '  >
 
-                <div id="progressBar" style={{ transform: `scale(1,${scroll})` }} className='absoulte top-4' />
+
+                <div id="progressBar" style={{ transform: `scale(1,${scroll})`, opacity: `${scroll}` }} className='absoulte top-4' />
 
 
 
-                <div id="a" className=' w-[90%] md:w-[95%] mx-auto text-white max-h-full h-full dark:bg-whitebg dark:text-blackbg' >
+                <div id="a" className=' w-[90%] md:w-[90%] mx-auto text-white max-h-full h-full  dark:text-blackbg' >
 
 
-                    <div className='top-a'>
+                    <div>
 
                         <nav>
                             <div className="flex justify-between py-6  mx-auto ">
-                                <h1 className=" text-lg text-logo" >Rakesh</h1>
+                                <h1 className=" text-lg text-high" >Rakesh</h1>
 
-                                {/* <li className=" text-sm cursor-pointer " ><BsFillMoonStarsFill onClick={trigger} /></li> */}
-
-                                {/* <label for="theme" class="theme">
-                                    <span class="theme__toggle-wrap">
-                                        <input id="theme" class="theme__toggle" type="checkbox" role="switch" name="theme" value="dark" />
-                                        <span class="theme__fill"></span>
-                                        <span class="theme__icon">
-                                            <span class="theme__icon-part"></span>
-                                            <span class="theme__icon-part"></span>
-                                            <span class="theme__icon-part"></span>
-                                            <span class="theme__icon-part"></span>
-                                            <span class="theme__icon-part"></span>
-                                            <span class="theme__icon-part"></span>
-                                            <span class="theme__icon-part"></span>
-                                            <span class="theme__icon-part"></span>
-                                            <span class="theme__icon-part"></span>
-                                        </span>
-                                    </span>
-                                </label> */}
+                                <input type="checkbox" id="toggle" class="toggle--checkbox" onClick={trigger} />
+                                <label for="toggle" class="toggle--label">
+                                    <span class="toggle--label-background"></span>
+                                </label>
 
                             </div>
                         </nav>
@@ -187,35 +208,35 @@ function Portfolio() {
 
                     <div className='flex flex-col '>
 
-                        <div className='h-[100vh] section'>
+                        <div>
                             <Hero />
                         </div>
                         <Line />
-                        <div className='h-[100vh] section '>
-
-                            <Skills />
-                        </div>
+                        <Skills />
                         <Line />
-                        <div className='h-[100vh] section '>
+                        <div>
+                            {/* <Pics /> */}
+                        </div>
+
+
+
+                        {/* <Line /> */}
+                        <div >
                             <About />
                         </div>
                         <Line />
 
-                        <div className='h-[100vh] section '>
+                        <div>
                             <Footer />
 
                         </div>
                     </div>
 
-
-
-
-
-
-
                 </div >
+
             </div>
         </main>
+
     )
 }
 

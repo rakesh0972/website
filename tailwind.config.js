@@ -11,7 +11,8 @@ module.exports = {
       'logo': '#DEDFDF',
       'whitebg': '#FDFDFD',
       'line': '#D9D9D9',
-      'high': '#00C667',
+      // 'high': '#00C667',
+      'high': '#EB5757',
 
     },
     extend: {

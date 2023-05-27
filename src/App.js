@@ -1,12 +1,20 @@
-import Portfolio from "./Portfolio";
-
+import Portfolio from "./Portfolio"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Gallery from "./pages/Gallery";
 
 function App() {
+
+
   return (
-    <div className="App">
-      {/* <ParticlesBackground /> */}
-      <Portfolio />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        <Route path="/gallery" element={<Gallery />} />
+
+
+      </Routes>
+
+    </BrowserRouter>
   );
 }
 
