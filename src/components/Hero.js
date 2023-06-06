@@ -4,14 +4,14 @@ import { AiFillInstagram, AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 import { Typewriter } from 'react-simple-typewriter'
 
 
-const Hero = () => {
+const Hero = ({ darkMode }) => {
 
 
 
     return (
         <>
 
-            <div className=" mt-64 tracking-tight mb-56 text-logo font-normal text-3xl  md:text-[5rem] leading-none dark:text-black/80 ">
+            <div className=" mt-64 tracking-tight mb-56  font-normal text-3xl  md:text-[5rem] leading-none  text-blackFont dark:text-whiteFont ">
 
                 <span >
                     ⥇ A front-end{' '}
@@ -38,12 +38,12 @@ const Hero = () => {
 
 
 
-                <div className="text-3xl flex justify-center gap-4 mt-9 text-line md:flex-col md:float-right md:text-3xl">
-                    <a href="https://www.instagram.com/nirvanashrestha__"> <AiFillInstagram className=" cursor-pointer hover:text-high dark:text-blackbg dark:hover:text-high transition-all ease-in-out duration-100 hover:scale-125" /></a>
+                <div className="text-3xl flex justify-center gap-4 mt-9  text-blackFont dark:text-whiteFont md:flex-col md:float-right md:text-3xl">
+                    <a href="https://www.instagram.com/nirvanashrestha__"> <AiFillInstagram className=" cursor-pointer hover:text-high dark:hover:text-high transition-all ease-in-out duration-100 hover:scale-125" /></a>
 
-                    <a href="https://github.com/rakesh0972"><AiFillGithub className=" cursor-pointer hover:text-high dark:text-blackbg  dark:hover:text-high transition-all ease-in-out  duration-100 hover:scale-125" /></a>
+                    <a href="https://github.com/rakesh0972"><AiFillGithub className=" cursor-pointer hover:text-high   dark:hover:text-high transition-all ease-in-out  duration-100 hover:scale-125" /></a>
 
-                    <a><AiFillLinkedin className=" cursor-pointer hover:text-high dark:text-blackbg  dark:hover:text-high transition-all ease-in-out duration-100 hover:scale-125" /></a>
+                    <a href='https://www.linkedin.com/in/rakesh-shrestha-926ab3278/'><AiFillLinkedin className=" cursor-pointer hover:text-high  dark:hover:text-high transition-all ease-in-out duration-100 hover:scale-125" /></a>
 
                 </div>
 

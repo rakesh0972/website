@@ -11,59 +11,8 @@ import { useCallback, useRef } from "react";
 
 
 
-function Portfolio() {
-    const track = document.getElementById("image-track");
+function Portfolio({ darkMode }) {
 
-    const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
-
-    const handleOnUp = () => {
-        track.dataset.mouseDownAt = "0";
-        track.dataset.prevPercentage = track.dataset.percentage;
-    }
-
-    const handleOnMove = e => {
-        if (track.dataset.mouseDownAt === "0") return;
-
-        const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
-            maxDelta = window.innerWidth / 2;
-
-        const percentage = (mouseDelta / maxDelta) * -100,
-            nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
-            nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
-
-        track.dataset.percentage = nextPercentage;
-
-        track.animate({
-            transform: `translate(${nextPercentage}%, -50%)`
-        }, { duration: 1200, fill: "forwards" });
-
-        for (const image of track.getElementsByClassName("image")) {
-            image.animate({
-                objectPosition: `${100 + nextPercentage}% center`
-            }, { duration: 1200, fill: "forwards" });
-        }
-    }
-
-    /* -- Had to add extra lines for touch events -- */
-
-    window.onmousedown = e => handleOnDown(e);
-
-    window.ontouchstart = e => handleOnDown(e.touches[0]);
-
-    window.onmouseup = e => handleOnUp(e);
-
-    window.ontouchend = e => handleOnUp(e.touches[0]);
-
-    window.onmousemove = e => handleOnMove(e);
-
-    window.ontouchmove = e => handleOnMove(e.touches[0]);
-
-
-    const [darkMode, setDarkMode] = useState(false);
-    function trigger() {
-        setDarkMode(!darkMode)
-        console.log(darkMode);
-    }
 
     const [scroll, setScroll] = useState(0);
 
@@ -83,7 +32,6 @@ function Portfolio() {
         return () => window.removeEventListener("scroll", progressBarHandler);
 
     });
-
     const particlesInit = useCallback(async engine => {
         console.log(engine);
 
@@ -92,14 +40,13 @@ function Portfolio() {
 
     const particlesLoaded = useCallback(async container => {
         await console.log(container);
-    }, []);
+    }, [])
 
 
     return (
 
 
         <main className={darkMode ? "dark" : ""}>
-
             <Particles
                 id="tsparticles"
                 init={particlesInit}
@@ -107,7 +54,7 @@ function Portfolio() {
                 options={{
                     background: {
                         color: {
-                            value: darkMode ? '#FDFDFD' : "#232323"
+                            value: darkMode ? '#040405' : "#FCFDFC"
                         },
                     },
                     fpsLimit: 120,
@@ -186,45 +133,20 @@ function Portfolio() {
 
 
 
-                <div id="a" className=' w-[90%] md:w-[90%] mx-auto text-white max-h-full h-full  dark:text-blackbg' >
-
-
-                    <div>
-
-                        <nav>
-                            <div className="flex justify-between py-6  mx-auto ">
-                                <h1 className=" text-lg text-high" >Rakesh</h1>
-
-                                <input type="checkbox" id="toggle" class="toggle--checkbox" onClick={trigger} />
-                                <label for="toggle" class="toggle--label">
-                                    <span class="toggle--label-background"></span>
-                                </label>
-
-                            </div>
-                        </nav>
-                    </div>
-
-
+                <div id="a" className=' w-[90%] md:w-[90%] mx-auto text-white max-h-full h-full  ' >
 
                     <div className='flex flex-col '>
 
                         <div>
-                            <Hero />
+                            <Hero darkMode={darkMode} />
                         </div>
-                        <Line />
+                        <Line darkMode={darkMode} />
                         <Skills />
-                        <Line />
-                        <div>
-                            {/* <Pics /> */}
-                        </div>
-
-
-
-                        {/* <Line /> */}
+                        <Line darkMode={darkMode} />
                         <div >
                             <About />
                         </div>
-                        <Line />
+                        <Line darkMode={darkMode} />
 
                         <div>
                             <Footer />

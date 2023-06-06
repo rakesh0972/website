@@ -102,6 +102,7 @@
 
 // export default Gallery;
 import React from 'react';
+import Pics from '../components/Pics';
 // import 'ani.html';
 const Gallery = () => {
 	const styles = {
@@ -111,6 +112,8 @@ const Gallery = () => {
 	return (
 		<div className="">
 			<iframe src="ani.html" style={styles}></iframe>
+
+			{/* <Pics /> */}
 		</div>
 	);
 };
