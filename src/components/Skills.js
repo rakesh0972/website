@@ -43,12 +43,12 @@ const Skills = () => {
                                     onMouseOver=
                                     {() => {
                                         let image = document.getElementById('img');
-                                        image.setAttribute('src', 'over.jpg');
+                                        image.setAttribute('src', 'over.png');
 
                                     }}
                                     onClick={() => {
                                         let image = document.getElementById('img');
-                                        image.setAttribute('src', 'over.jpg');
+                                        image.setAttribute('src', 'over.png');
 
                                     }} className="flex min-h-14 h-full  w-full cursor-pointer items-center  border-b  font-normal pt-10 pb-4  dark:text-whiteFont/60 hover:text-high hover:dark:text-high hover:opacity-[70%] text-blackFont/60 transition-all ease-in-out duration-200 hover:px-3">
                                     <h1>02</h1>

@@ -105,7 +105,7 @@ const UI = ({ darkMode }) => {
 					Prototyping"
 					link="https://www.figma.com/file/LU43PKfE77Ip4zYdJ0eiZF/Untitled?type=design&node-id=0-1&t=K6am7R5UfirfIl0F-0"
 					li={['Figma']}
-					img="../dog.jpg"
+					img="../dog.png"
 				/>
 				<Line darkMode={darkMode} />
 				<Details2
@@ -113,7 +113,7 @@ const UI = ({ darkMode }) => {
 					title="Website designs"
 					description="These are some of the landing pages design  i have made"
 					li={['Figma']}
-					img="../ui.jpg"
+					img="../ui.png"
 					link="https://www.figma.com/file/O9SgFNKKuUV5NHw0koNnuC/Websites?type=design&node-id=0-1&t=UpUp64JUGPEFlOdr-0"
 				/>
 				<Line />

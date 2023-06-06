@@ -111,7 +111,7 @@ const Projects = ({ darkMode }) => {
 							while working on this project."
 					li={[' React, Tailwind,  Mantine UI']}
 					link="http://arniko.edu.np/"
-					img="../arniko1.jpg"
+					img="../arniko1.png"
 				/>
 				<Line darkMode={darkMode} />
 				<Details2
@@ -121,7 +121,7 @@ const Projects = ({ darkMode }) => {
 							account and they can upload blogs and view other peoples blogs as
 							well."
 					li={['React, Vite, Tailwind, Firebase']}
-					img="../over.jpg"
+					img="../over.png"
 					link="https://over-n-out.vercel.app/"
 				/>
 				<Line />
@@ -131,7 +131,7 @@ const Projects = ({ darkMode }) => {
 					description="I made a Netflix clone where we can view the trending movies and get
 							details about the movies as well"
 					li={['React, vite.js, Tailwind, Mantine , TBDM api']}
-					img="../netflix.jpg"
+					img="../netflix.png"
 					link="https://netflix-clone-99.vercel.app/"
 				/>
 				<Line />

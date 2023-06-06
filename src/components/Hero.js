@@ -11,7 +11,7 @@ const Hero = ({ darkMode }) => {
     return (
         <>
 
-            <div className=" mt-64 tracking-tight mb-56  font-normal text-3xl  md:text-[5rem] leading-none  text-blackFont dark:text-whiteFont ">
+            <div className=" mt-72 tracking-tight mb-56  font-normal text-3xl  md:text-[5rem] leading-none  text-blackFont dark:text-whiteFont ">
 
                 <span >
                     ⥇ A front-end{' '}
